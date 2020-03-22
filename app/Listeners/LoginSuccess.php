@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\AccessControl;
 use Illuminate\Auth\Events\Login;
 use IlluminateAuthEventsLogin;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,7 +29,14 @@ class LoginSuccess
      */
     public function handle(Login $event)
     {
-        dd (request()->ip());
-        dd ($event);
+        $accessSuccess = new AccessControl();
+
+        $accessSuccess->ip = request()->ip();
+        $accessSuccess->user_id = $event->user->id;
+        $accessSuccess->access_timestamp = now();
+        $accessSuccess->type = 'C';
+
+        $accessSuccess->save();
+
     }
 }
