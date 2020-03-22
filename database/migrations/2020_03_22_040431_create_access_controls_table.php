@@ -15,6 +15,11 @@ class CreateAccessControlsTable extends Migration
     {
         Schema::create('access_controls', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->ipAddress('ip');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->char('type', 1);
+            $table->dateTime('access_timestamp');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
