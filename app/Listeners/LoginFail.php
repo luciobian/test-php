@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\AccessControl;
 use IlluminateAuthEventsFailed;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Queue\InteractsWithQueue;
@@ -27,6 +28,13 @@ class LoginFail
      */
     public function handle(Failed $event)
     {
-        dd($event);
+        $accessSuccess = new AccessControl();
+
+        $accessSuccess->ip = request()->ip();
+        $accessSuccess->user_id = $event->user ? $event->user->id : null;
+        $accessSuccess->access_timestamp = now();
+        $accessSuccess->type = 'I';
+
+        $accessSuccess->save();
     }
 }
