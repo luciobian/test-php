@@ -14,8 +14,10 @@ class AccessControlController extends Controller
      */
     public function show()
     {
-        $access_control = AccessControl::orderBy('created_at', 'desc')->get()->groupBy('type');
+        $access_success = AccessControl::orderBy('created_at', 'desc')->where('type', 'C')->simplePaginate(5);
 
-        return view('access_control', ['access_control'=>$access_control]);
+        $access_failed = AccessControl::orderBy('created_at', 'desc')->where('type', 'I')->simplePaginate(5);
+
+        return view('access_control', ['success'=>$access_success, 'failed'=>$access_failed]);
     }
 }
