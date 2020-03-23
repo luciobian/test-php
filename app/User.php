@@ -41,7 +41,7 @@ class User extends Authenticatable
     /**
      * Get the access control that owns the user.
      */
-    public function user()
+    public function access_control()
     {
         return $this->hasOne('App\AccessControl');
     }
