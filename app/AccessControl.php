@@ -17,4 +17,13 @@ class AccessControl extends Model
     {
         return Carbon::parse($value);
     }
+
+
+    /**
+     * Get the user record associated with the access control.
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }

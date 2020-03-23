@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Get the access control that owns the user.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\AccessControl');
+    }
 }
