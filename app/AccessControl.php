@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccessControl extends Model
 {
+
+    protected $with = ['user'];
+
     /**
      * Get the access timestamp.
      *
@@ -24,6 +27,6 @@ class AccessControl extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 }

@@ -43,6 +43,6 @@ class User extends Authenticatable
      */
     public function user()
     {
-        return $this->belongsTo('App\AccessControl');
+        return $this->hasOne('App\AccessControl');
     }
 }
