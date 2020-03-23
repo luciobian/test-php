@@ -13,7 +13,7 @@
         </thead>
         <tbody>
 
-          @foreach ($access_control["C"] as $item)
+          @foreach ($success as $item)
               <tr>
                 <td class="text-center" style="width:33.3%">
                   @if (!empty($item->user))
@@ -35,7 +35,9 @@
           
         </tbody>
       </table>
-
+      <div class="d-flex justify-content-center">
+        {{ $success->links() }}
+      </div>
       <h3>Accesos fallidos</h3>
     <hr>
     <table class="table" style="background-color:#ffffff">
@@ -47,7 +49,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($access_control["I"] as $item)
+          @foreach ($failed as $item)
               <tr>
                 <td class="text-center" style="width:33.3%">
                   @if (!empty($item->user))
@@ -67,5 +69,8 @@
           @endforeach
         </tbody>
       </table>
+      <div class="d-flex justify-content-center">
+        {{ $failed->links() }}
+      </div>
 </div>
 @endsection
