@@ -17,6 +17,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -90,6 +91,9 @@
         </nav>
 
         <main class="py-4">
+            @auth
+                @include('toast')
+            @endauth
             @yield('content')
         </main>
     </div>
@@ -100,6 +104,12 @@
         $(document).ready(function(){
           $('[data-toggle="popover"]').popover();
         });
-      </script>
+
+        $(document).ready(function(){
+          setTimeout(function() {
+            $(".alert-block").fadeOut('slow');
+          }, 3000);
+        });
+    </script>
 </body>
 </html>
