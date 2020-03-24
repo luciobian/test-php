@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
    /**
      * Show view of user
      *
@@ -28,13 +34,10 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-
-        $rules = [
-            'name' => 'min:3',
-            'email' => 'email|unique:users,email,' . $user->id,
-        ];
-
-        $this->validate($request, $rules);
+        $request->validate( [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users'
+        ]);
 
         if ($request->has('name')) {
             $user->name = $request->name;
@@ -47,12 +50,12 @@ class UserController extends Controller
 
         if(!$user->isDirty())
         {
-            return "error";
+            return back()->with('error','Ha ocurrido un error.');
         }
 
         $user->save();
 
-        return [$request, $user];
+        return redirect('/users')->with('success','Modificación exitosa!');
     }
 
     /**
@@ -65,6 +68,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return back();
+        return back()->with('success','Eliminación exitosa!');
     }
 }
