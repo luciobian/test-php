@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\AccessControl;
-use Illuminate\Http\Request;
 
 class AccessControlController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Show view of Access control
      *
