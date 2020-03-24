@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -22,6 +22,12 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <a href="{{url('/home')}}" class="px-3" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Ir a página principal">
+                    <i class="fa fa-home" aria-hidden="true" style="font-size:25px">
+
+                    </i>
+                </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,7 +46,7 @@
                                 <h6 class="dropdown-header">Operaciones</h6>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('/access-control') }}">Control de acceso</a>
-                                <a class="dropdown-item" href="#">Usuarios</a>
+                                <a class="dropdown-item" href="{{ url('/users') }}">Usuarios</a>
                                 </div>
                             </li>    
                         @endauth
