@@ -37,6 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) { // before delete() method call this
+            $user->access_control()->delete();
+            // do the rest of the cleanup...
+       });
+    }
+
 
     /**
      * Get the access control that owns the user.
